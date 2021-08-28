@@ -10,7 +10,7 @@ using Persistence;
 
 namespace API.Controllers
 {
-    public class ActivitiesController: BaseApiController
+    public class ActivitiesController : BaseApiController
     {
         [HttpGet]
         public async Task<ActionResult<List<Activity>>> GetActivities()
@@ -21,7 +21,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Activity>> GetActivity(Guid id)
         {
-            return Ok();
+            return await Mediator.Send(new Details.Query {Id = id});
         }
     }
 }
