@@ -13,10 +13,14 @@ function App() {
     const [editMode, setEditMode] = useState(false);
 
     useEffect(() => {
-        // axios.get<Activity[]>('http://localhost:5000/api/activities')
         agent.Activities.list()
             .then(response => {
-                setActivities(response);
+                let activities: Activity[] = [];
+                response.forEach(activity => {
+                    activity.date = activity.date.split('T')[0];
+                    activities.push(activity);
+                });
+                setActivities(activities);
             })
             .catch(error => {
                 console.log(error)
