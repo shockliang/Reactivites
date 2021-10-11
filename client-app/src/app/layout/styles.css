@@ -1,7 +1,13 @@
 body {
-  background-color: #EAEAEA !important;
+    background-color: #EAEAEA !important;
 }
 
 .ui.inverted.top.fixed.menu {
-  background-image: linear-gradient(135deg, rgb(24, 42, 115) 0%, rgb(33, 138, 74) 69%, rgb(32, 167, 172) 89%) !important;
+    background-image: linear-gradient(135deg, rgb(24, 42, 115) 0%, rgb(33, 138, 74) 69%, rgb(32, 167, 172) 89%) !important;
+}
+
+.react-calendar {
+    width: 100%;
+    border: none;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
 }
