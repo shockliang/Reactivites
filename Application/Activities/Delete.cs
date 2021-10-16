@@ -28,8 +28,7 @@ namespace Application.Activities
                 var activity = await _dataContext.Activities.FindAsync(request.Id);
 
                 if (activity == null) return null;
-                    
-                
+
                 _dataContext.Remove(activity);
 
                 var result = await _dataContext.SaveChangesAsync() > 0;
