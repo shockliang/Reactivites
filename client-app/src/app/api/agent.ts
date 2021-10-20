@@ -19,6 +19,18 @@ axios.interceptors.response.use(async response => {
     const {data, status} = error.response!;
     switch (status) {
         case 400:
+            if (data.errors) {
+                const modalStateErrors = [];
+                for (const key in data.errors) {
+                    if (data.errors[key]) {
+                        modalStateErrors.push(data.errors[key]);
+                    }
+                }
+
+                throw modalStateErrors.flat();
+            } else {
+                toast.error(data);
+            }
             toast.error('bad request');
             break;
         case 401:
