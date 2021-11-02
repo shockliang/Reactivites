@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Persistence;
 
 namespace API.Extensions
 {
@@ -14,7 +15,7 @@ namespace API.Extensions
         {
             services
                 .AddIdentityCore<AppUser>(opt => { opt.Password.RequireNonAlphanumeric = false; })
-                .AddEntityFrameworkStores<DbContext>()
+                .AddEntityFrameworkStores<DataContext>()
                 .AddSignInManager<SignInManager<AppUser>>();
 
             services.AddAuthentication();
