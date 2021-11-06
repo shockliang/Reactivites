@@ -21,7 +21,7 @@ namespace API.Extensions
                 .AddIdentityCore<AppUser>(opt => { opt.Password.RequireNonAlphanumeric = false; })
                 .AddEntityFrameworkStores<DataContext>()
                 .AddSignInManager<SignInManager<AppUser>>();
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my super secret key"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"]));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>
