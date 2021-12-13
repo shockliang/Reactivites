@@ -52,9 +52,9 @@ namespace Application.Photos
 
                 var result = await _dataContext.SaveChangesAsync() > 0;
 
-                if (result) return Result<Photo>.Success();
+                if (result) return Result<Photo>.Success(photo);
 
-                return Result<Photo>.Failure();
+                return Result<Photo>.Failure("");
             }
         }
     }
