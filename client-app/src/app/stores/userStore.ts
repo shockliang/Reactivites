@@ -23,7 +23,7 @@ export default class UserStore {
             history.push('/activities');
             store.modalStore.closeModal();
             console.log(user)
-        } catch (error ) {
+        } catch (error) {
             throw error;
         }
     }
@@ -52,8 +52,12 @@ export default class UserStore {
             history.push('/activities');
             store.modalStore.closeModal();
             console.log(user)
-        } catch (error ) {
+        } catch (error) {
             throw error;
         }
+    }
+
+    setImage = (image: string) => {
+        if (this.user) this.user.image = image;
     }
 }
