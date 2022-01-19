@@ -20,7 +20,7 @@ namespace Application.Followers
             public string Predicate { get; set; }
             public string Username { get; set; }
         }
-        
+
         public class Handler : IRequestHandler<Query, Result<List<Profile>>>
         {
             private readonly DataContext _dataContext;
@@ -33,7 +33,7 @@ namespace Application.Followers
                 _mapper = mapper;
                 _userAccessor = userAccessor;
             }
-            
+
             public async Task<Result<List<Profile>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var profiles = new List<Profile>();
@@ -46,14 +46,16 @@ namespace Application.Followers
                             .Select(u => u.Observer)
                             .ProjectTo<Profile>(
                                 _mapper.ConfigurationProvider,
-                                new {currentUsername = _userAccessor.GetUserName()})
+                                new { currentUsername = _userAccessor.GetUserName() })
                             .ToListAsync();
                         break;
                     case "following":
                         profiles = await _dataContext.UserFollowings
                             .Where(x => x.Observer.UserName == request.Username)
                             .Select(u => u.Target)
-                            .ProjectTo<Profile>(_mapper.ConfigurationProvider)
+                            .ProjectTo<Profile>(
+                                _mapper.ConfigurationProvider,
+                                new { currentUsername = _userAccessor.GetUserName() })
                             .ToListAsync();
                         break;
                 }
