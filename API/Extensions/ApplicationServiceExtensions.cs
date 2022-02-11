@@ -21,7 +21,7 @@ namespace API.Extensions
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "API", Version = "v1"}); });
             services.AddDbContext<DataContext>(opt =>
             {
-                opt.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+                opt.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddCors(opt =>
             {
