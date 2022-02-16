@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Button, Container, Header, Image, Segment} from "semantic-ui-react";
+import {Button, Container, Divider, Header, Image, Segment} from "semantic-ui-react";
 import {observer} from "mobx-react-lite";
 import {useStore} from "../../app/stores/store";
 import LoginForm from "../users/LoginForm";
@@ -30,6 +30,14 @@ export default observer(function HomePage() {
                         <Button onClick={() => modalStore.openModal(<RegisterForm />)} size={'huge'} inverted>
                             Register
                         </Button>
+                        <Divider horizontal inverted>Or</Divider>
+                        <Button
+                            size={"huge"}
+                            inverted
+                            color={'facebook'}
+                            content={'Login with facebook'}
+                            onClick={userStore.facebookLogin}
+                        />
                     </>
 
                 )}
