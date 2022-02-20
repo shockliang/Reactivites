@@ -32,6 +32,7 @@ export default observer(function HomePage() {
                         </Button>
                         <Divider horizontal inverted>Or</Divider>
                         <Button
+                            loading={userStore.fbLoading}
                             size={"huge"}
                             inverted
                             color={'facebook'}
