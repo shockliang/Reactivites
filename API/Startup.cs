@@ -55,17 +55,52 @@ namespace API
             {
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+                app.UseCspReportOnly(opt => opt
+                    .BlockAllMixedContent()
+                    .StyleSources(s => s.Self()
+                        .CustomSources(
+                            "https://fonts.googleapis.com",
+                            "sha256-yChqzBduCCi4o4xdbXRXh4U/t1rP4UUUMJt+rB+ylUI="))
+                    .FontSources(s => s.Self()
+                        .CustomSources("https://fonts.gstatic.com/", "data:"))
+                    .FormActions(s => s.Self())
+                    .FrameAncestors(s => s.Self())
+                    .ImageSources(s => s.Self()
+                        .CustomSources(
+                            "https://www.facebook.com",
+                            "https://res.cloudinary.com",
+                            "data:"))
+                    .ScriptSources(s => s.Self()
+                        .CustomSources(
+                            "sha256-yChqzBduCCi4o4xdbXRXh4U/t1rP4UUUMJt+rB+ylUI=",
+                            "sha256-GR9OwjbT/NvvB6BtJTihFr8QTDsAMhjYE+BJwlB2n70=",
+                            "sha256-FxWwTAdSjATwPlsAFcWm2r75EsXr0nltQlm6b6QNLt4=",
+                            "https://connect.facebook.net"))
+                );
             }
             else
             {
                 app.UseCsp(opt => opt
                     .BlockAllMixedContent()
-                    .StyleSources(s => s.Self().CustomSources("https://fonts.googleapis.com"))
-                    .FontSources(s =>s.Self().CustomSources("https://fonts.gstatic.com/","data:"))
-                    .FormActions(s =>s.Self())
-                    .FrameAncestors(s =>s.Self())
-                    .ImageSources(s =>s.Self().CustomSources("https://res.cloudinary.com"))
-                    .ScriptSources(s =>s.Self().CustomSources("sha256-GR9OwjbT/NvvB6BtJTihFr8QTDsAMhjYE+BJwlB2n70="))
+                    .StyleSources(s => s.Self()
+                        .CustomSources(
+                            "https://fonts.googleapis.com",
+                            "sha256-yChqzBduCCi4o4xdbXRXh4U/t1rP4UUUMJt+rB+ylUI="))
+                    .FontSources(s => s.Self()
+                        .CustomSources("https://fonts.gstatic.com/", "data:"))
+                    .FormActions(s => s.Self())
+                    .FrameAncestors(s => s.Self())
+                    .ImageSources(s => s.Self()
+                        .CustomSources(
+                            "https://www.facebook.com",
+                            "https://res.cloudinary.com",
+                            "data:"))
+                    .ScriptSources(s => s.Self()
+                        .CustomSources(
+                            "sha256-yChqzBduCCi4o4xdbXRXh4U/t1rP4UUUMJt+rB+ylUI=",
+                            "sha256-GR9OwjbT/NvvB6BtJTihFr8QTDsAMhjYE+BJwlB2n70=",
+                            "sha256-FxWwTAdSjATwPlsAFcWm2r75EsXr0nltQlm6b6QNLt4=",
+                            "https://connect.facebook.net"))
                 );
                 app.Use(async (context, next) =>
                 {
