@@ -3,8 +3,6 @@ import {makeAutoObservable, runInAction} from "mobx";
 import agent from "../api/agent";
 import {store} from "./store";
 import {history} from "../../index";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 
 export default class UserStore {
     user: User | null = null;
