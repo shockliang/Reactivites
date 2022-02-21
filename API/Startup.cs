@@ -67,6 +67,7 @@ namespace API
                     .FrameAncestors(s => s.Self())
                     .ImageSources(s => s.Self()
                         .CustomSources(
+                            "https://platform-lookaside.fbsbx.com/",
                             "https://www.facebook.com",
                             "https://res.cloudinary.com",
                             "data:"))
@@ -92,6 +93,7 @@ namespace API
                     .FrameAncestors(s => s.Self())
                     .ImageSources(s => s.Self()
                         .CustomSources(
+                            "https://platform-lookaside.fbsbx.com/",
                             "https://www.facebook.com",
                             "https://res.cloudinary.com",
                             "data:"))
