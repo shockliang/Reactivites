@@ -161,7 +161,9 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> RefreshToken()
         {
             var refreshToken = Request.Cookies["refreshToken"];
-            var user = await _userManager.Users.Include(r => r.RefreshTokens)
+            var user = await _userManager.Users
+                .Include(r => r.RefreshTokens)
+                .Include(p => p.Photos)
                 .FirstOrDefaultAsync(x => x.UserName == User.FindFirstValue(ClaimTypes.Name));
 
             if (user == null) return Unauthorized();
