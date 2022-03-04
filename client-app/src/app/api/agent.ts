@@ -55,7 +55,7 @@ axios.interceptors.response.use(async response => {
             toast.error('bad request');
             break;
         case 401:
-            if(status === 401 && headers['www-authenticate'].startWith('Bearer error="invalid_token"')) {
+            if(status === 401 && headers['www-authenticate']?.startWith('Bearer error="invalid_token"')) {
                 store.userStore.logout();
                 toast.error('Session expired - please login again');
             }
